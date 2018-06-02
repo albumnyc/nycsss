@@ -1,0 +1,7 @@
+@function pxtorem($num){
+    @return $num/25 *1rem;
+}
+
+$color : (#222430, #bbb, #555, #a3a3a3, #b94a48, #2589FF);
+
+$bgcolor : (#E609CC, )
