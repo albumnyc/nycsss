@@ -26,25 +26,18 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
+<style lang="scss" >
 @import './scss/base.scss';
-
 *{
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;  
   font-size: pxtorem(14);
   padding: 0px;
   margin: 0px;
-  color: nth($color,5);
+  color: nth($color,1);
 }
-img{
-  width: percentage(1/10);
-}
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+</style>
+<style lang="scss" scoped>
+// img{
+//   width: percentage(1/10);
+// }
 </style>
