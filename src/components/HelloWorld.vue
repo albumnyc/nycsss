@@ -1,10 +1,13 @@
 <template>
-  <div>
+  <div class="cur_root" ref="poster">
       <transition name="sss" >  
-        <div v-if="show" class="trans" > 
+        <div v-if="show" class="trans" ref="box"> 
             <img src="../assets/sssss.png"><img src="../assets/sssss.png">
         </div>
       </transition>
+       <span>
+         full with love
+       </span>
   </div>
 </template>
 
@@ -17,8 +20,41 @@ export default {
       show:false,
     }
   },
+  methods:{
+      pause(e){
+        console.log(e.target);
+      }
+  },
   mounted(){
-    setTimeout(_=>{this.show = true},0)
+    var timing = {
+      duration :2100,
+      delay:0,
+      iterations:Infinity,
+      easing :'ease-in-out',
+      direction: 'alternate-reverse',
+      fill: 'forwards'
+    };
+    var frames = [{
+          background:'pink'
+    },{
+          background:'yellow'
+    },{
+          background:'blue'
+    }];
+   let player= this.$refs.poster.animate(frames,timing);
+    setTimeout(_=>{
+      this.show = true;    //弹出小logo
+      setTimeout(_=>{
+      // console.log(this.$refs.box);
+        this.$refs.box.onclick=_=>{
+              player.pause();
+          }
+          // this.$refs.box.onmouseleave =_=>{
+          //   player.run();
+          // }  
+      },0)
+    },1000);
+// console.log(this.$refs.poster)
   }
 }
 </script>
@@ -26,30 +62,63 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang = "scss">
 @import '../scss/base.scss';
-
+.cur_root{
+  width: 100vw;
+  height: 100vh;
+}
 .trans{
   position: absolute;
   /* width: pxtorem(50); */
   height: pxtorem(100);
-  background: url('../assets/heart.jpg');
+  /* background: url('../assets/heart.jpg'); */
   background-position: 0 0;
   background-size: 100% 100%;
   left: 50%;
   top: 50%;
   width: pxtorem(100);
-  transform: translate(-50% ,-50%) scale(3);
+  transform: translateX(-55%);
+;
   transform-origin: center center;
   img{
-      transform: translateY(50%) scale(0.3); 
+      /* transform: translate(-50%);  */
   transform-origin: center center;
-         
     display: inline-block;
     height: pxtorem(50);
     width: pxtorem(50);
     border-radius:50%;
-
   }
 }
+@keyframes wid {
+    0%{
+      width: 0px;
+      color: nth($color,3);
+    }
+    70%{
+      transform: scale(6);
+      width: pxtorem(20);
+      color: nth($color,1);
+      transform-origin: bottom;
+    }
+    100%{
+      color: nth($bgcolor,4);      
+      width: pxtorem(200);
+    }
+}
+span{
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 0px;
+  color:nth($color,3);
+  font-size: pxtorem(35);
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: wid 1500ms linear forwards;
+  text-align: center;
+}
+
+
 .sss-enter{
   opacity: 0;
   top: pxtorem(-20);

@@ -10,7 +10,7 @@
 function init (){
    var wid =  document.documentElement.getBoundingClientRect()['width'];
     var num =  wid/15; //一rem对应25px
-    console.log(num);
+    // console.log(num);
     document.documentElement.style.fontSize = `${num}px`;
 }
 window.onload = _=>{
