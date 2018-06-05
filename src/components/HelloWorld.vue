@@ -1,7 +1,7 @@
 <template>
   <div class="cur_root" ref="poster">
       <transition name="sss" >  
-        <div v-if="show" class="trans" ref="box"> 
+        <div v-if="show" class="trans animated infinite pulse" ref="box"> 
             <img src="../assets/sssss.png"><img src="../assets/sssss.png">
         </div>
       </transition>
@@ -35,11 +35,11 @@ export default {
       fill: 'forwards'
     };
     var frames = [{
-          background:'pink'
+          background:'lightpink'
     },{
-          background:'yellow'
+          background:'lightyellow'
     },{
-          background:'blue'
+          background:'lightblue'
     }];
    let player= this.$refs.poster.animate(frames,timing);
     setTimeout(_=>{
@@ -48,6 +48,7 @@ export default {
       // console.log(this.$refs.box);
         this.$refs.box.onclick=_=>{
               player.pause();
+              this.$router.push({path:'/home'});
           }
           // this.$refs.box.onmouseleave =_=>{
           //   player.run();
@@ -67,16 +68,17 @@ export default {
   height: 100vh;
 }
 .trans{
+     animation-delay: 1200ms;   
   position: absolute;
   /* width: pxtorem(50); */
-  height: pxtorem(100);
+  height: pxtorem(50);
   /* background: url('../assets/heart.jpg'); */
   background-position: 0 0;
   background-size: 100% 100%;
-  left: 50%;
+  left: 38%;
   top: 50%;
   width: pxtorem(100);
-  transform: translateX(-55%);
+  /* transform: translateX(-55%); */
 ;
   transform-origin: center center;
   img{
