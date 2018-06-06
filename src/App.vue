@@ -29,6 +29,8 @@ export default {
 <style lang="scss" >
 @import './scss/base.scss';
 *{
+  list-style: none;
+  text-decoration: none;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;  
   font-size: pxtorem(14);
   padding: 0px;

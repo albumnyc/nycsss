@@ -20,11 +20,6 @@ export default {
       show:false,
     }
   },
-  methods:{
-      pause(e){
-        console.log(e.target);
-      }
-  },
   mounted(){
     var timing = {
       duration :2100,
@@ -88,6 +83,9 @@ export default {
     height: pxtorem(50);
     width: pxtorem(50);
     border-radius:50%;
+    &:nth-of-type(2){
+      transform: translateX(pxtorem(-5));
+    }
   }
 }
 @keyframes wid {
