@@ -1,0 +1,65 @@
+// @import './base.scss';
+.dialog-box{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 999;
+    left: 0px;
+    top: 0px;
+    background: rgba(grey,0.5);
+    .dialog{
+        opacity: 1;
+        position: absolute;
+        top: 20%;
+        transform: translateY(20%);
+        // transform: translateY(40%);
+        // transition: all linear 500ms;
+        background-color: nth($bgcolor,5);
+        width: 90%;
+        margin-left: 5%;
+        border-radius: pxtorem(10);
+        overflow: hidden;
+        .dialog_top{
+            position: relative;
+            height: 20vh;
+            width: 100%;
+            .dialog_img{
+                width: 100%;
+                height: 100%;
+            }
+            &>span{
+                span{
+
+                }
+            }
+            .head_box{
+                position: absolute;
+                img{
+                    width: pxtorem(20);
+                    height: pxtorem(20)
+                }                
+            }
+        }
+        .dialog_bottom{
+            width: 100%;
+            height: 30%;
+            ul{
+                width: 100%;
+                box-sizing: border-box;
+                padding: pxtorem(50) pxtorem(20) pxtorem(10);
+            }
+        }
+    }
+}
+.dialog-enter,.dialog-leave-to{
+    opacity: 0;
+    // transform: translateY(0);
+}
+.dialog-enter-to,.dialog-leave{
+    opacity: 1;
+        // transform: translateY(20%);
+     top: 20%;        
+}
+.dialog-enter-active,.dialog-leave-active{
+    transition:  300ms linear all;
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="cur_root" ref="poster">
-      <transition name="sss" >  
+      <transition name="sss">  
         <div v-if="show" class="trans animated infinite pulse" ref="box"> 
             <img src="../assets/sssss.png"><img src="../assets/sssss.png">
         </div>
