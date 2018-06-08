@@ -1,5 +1,6 @@
 <template>
     <div class="screen">
+
         <transition name ="dialog">
             <div class="dialog-box" v-if="DialogVisible"> 
                 <div class="dialog">
@@ -17,7 +18,7 @@
                                     <span>
                                         {{note.key}}
                                     </span>
-                                    <span>
+                                    <span class="float_right">
                                         <span>
                                             {{note.value.match(/\d/gim).join("")}}
                                         </span>
@@ -33,7 +34,7 @@
             </div>
         </transition>
 
-        <div class="main" v-show="globalIndex==0">
+        <div class="main" v-show="globalIndex==0">            
             <div class="backbord">
                 <img src="../assets/sssss.png" alt="大图背景" @click.stop="DialogVisible=true">
                 <div class="mid_area">

@@ -4,7 +4,7 @@ export const dialog = {
             e.stopPropagation();
             e.preventDefault();
             this.$nextTick(_=>{
-                console.log(this.DialogVisible)
+                // console.log(this.DialogVisible)
                 this.DialogVisible = false;
             })
         },false)
