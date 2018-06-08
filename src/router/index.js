@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Home from '@/pages/home'
+const Notes = r => require.ensure([], () => r(require('../pages/notes.vue')), 'notes');
 Vue.use(Router)
 
 const router=  new Router({
@@ -17,8 +18,12 @@ const router=  new Router({
       name :'home',
       component :Home,
       meta : '主页'
-    },
-    {
+    },{
+      path : '/notes',
+      component :Notes,
+      meta : '纪念日',
+      name : 'notes'
+    },{
       path: "*",
       redirect :{
         path : '/'

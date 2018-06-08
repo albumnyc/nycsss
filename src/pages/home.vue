@@ -48,7 +48,7 @@
                 </div>
             </div>
                 <ul class="tag_box screenraer">
-                    <li v-for="(tag,tagIndex) in tags" :key="tagIndex" :style="{backgroundColor:tag.bgcolor}">
+                    <li v-for="(tag,tagIndex) in tags" :key="tagIndex" :style="{backgroundColor:tag.bgcolor}" @click="$router.push({path:tag.path})">
                         <div class="opotion-box">
                             <div class="opotion_title">
                                     {{tag.name}}
@@ -79,6 +79,7 @@ export default {
                     name :'纪念日',
                     data: "6条",
                     bgcolor: 'pink',
+                    path: 'notes'
             },{
                     name :'时光记录',
                     data: '7条',
@@ -94,7 +95,7 @@ export default {
             }],
             notes:[{    //弹窗的展示列表
                     key: "连续回家",
-                    value: "0天"
+                    value: "0天",
             },{
                     key: "农场连续签到",
                     value: "0次"
