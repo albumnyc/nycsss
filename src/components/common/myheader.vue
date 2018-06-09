@@ -45,6 +45,9 @@ export default {
           text-align: center;
           left: 50%;
           transform: translateX(-50%);
+          width: pxtorem(60);
+          display: flex;
+          justify-content: center;
         // float: left;
     } 
      &>div:nth-of-type(3){
@@ -52,6 +55,7 @@ export default {
         right: 0px;        
         width: pxtorem(40);
         overflow: hidden;
+        width: pxtorem(60);
         // float: right;
     }
     img{

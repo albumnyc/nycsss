@@ -91,7 +91,8 @@ export default {
             },{
                     bgcolor: 'pink',
                     name :'恋爱打卡',
-                    data: '15次'
+                    data: '15次',
+                    path:'loverecords'
             }],
             notes:[{    //弹窗的展示列表
                     key: "连续回家",
