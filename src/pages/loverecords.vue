@@ -2,7 +2,7 @@
 <transition>
     <div>
         <transition name="turnpage">
-            <div class="child" v-if="childcomponent">
+            <div class="child" v-if="childcomponent" >
                 <div v-for="(card,cardIndex) in cardsList" :key="cardIndex" class="cardItem">
                     <div class="del">
                         -
@@ -37,11 +37,23 @@
                     </span>
                 </div>
              </myheader>
+             <div class="content">
+                    <div v-for="(card,cardIndex) in cardsList" :key ="cardIndex" class="cardItem"> 
+                         <img src="../assets/sssss.png" >
+                         <div class="method">
+                                {{card.way}}
+                         </div>
+                         <div class="pick" @click="card.pick=true" :style="{backgroundColor:card.pick?'grey':'green'}">
+                             打卡
+                         </div>
+                    </div>
+             </div>
     </div>
 </transition>
 </template>
 <script>
 import myheader from '../components/common/myheader';
+// import {setDate} from '../js/func';
 export default {
     name :'loverecords',
     components :{myheader},
@@ -50,16 +62,27 @@ export default {
             childcomponent :false,
             cardsList:[{
                 way : '想你一次就打卡',
-                times : 12
+                times : 12,
+                pick:false
             },{
                 way: '每天说晚安',
-                times :10
+                times :10,
+                pick:false,
             },{
                 way: '每天都要么么哒',
-                times :3
+                times :3,
+                pick:false
             }]
         }
     },  
+    mounted(){
+        // console.log(this.$refs)
+        // this.$refs.move.addEventListener('touchdown',(e)=>{
+        //     const startY = e.pageY;
+        //     console.log(startY);
+        //     return false;
+        // },false)
+    },
     methods:{
         addnote(){
             console.log('add');
@@ -77,7 +100,10 @@ export default {
         },
         finishEdit(){
             this.childcomponent = false;
-        }
+        },
+        // toPicked(name){
+        //     name.pick=true;
+        // }
     },
 }
 </script>
@@ -161,5 +187,34 @@ export default {
         }
     }
     // padding-right: pxtorem(5);
+}
+.content{
+    width: 100%;
+    height: calc(100% -1.2rem);
+    .cardItem{
+        width: 100%;
+        height: pxtorem(50);
+        border-bottom: 1px solid rgba(grey,0.2);
+        &:nth-of-type(1){
+            border-top: 1px solid rgba(grey,0.2);
+        }
+        display: flex;
+        align-items: center;
+        img{
+            width: pxtorem(40);
+            height: pxtorem(40);
+            border-radius: 50%;
+            padding: 0 pxtorem(5);
+        }
+        .method{
+            padding-left: pxtorem(5);
+            flex:1;
+        }
+        .pick{
+            border-radius: pxtorem(20);
+            margin-right: pxtorem(10);
+            padding: 0 pxtorem(5);
+        }
+    }
 }
 </style>
