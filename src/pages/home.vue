@@ -78,18 +78,18 @@ export default {
             tags:[{             //4个选项表
                     name :'纪念日',
                     data: "6条",
-                    bgcolor: 'pink',
+                    bgcolor: 'lightblue',
                     path: 'notes'
             },{
                     name :'时光记录',
                     data: '7条',
-                    bgcolor: 'pink',                    
+                    bgcolor: 'lightblue',                    
             },{
                     name :'爱情树',
-                    bgcolor: 'pink',
+                    bgcolor: 'lightblue',
                     data: '3天',
             },{
-                    bgcolor: 'pink',
+                    bgcolor: 'lightblue',
                     name :'恋爱打卡',
                     data: '15次',
                     path:'loverecords'

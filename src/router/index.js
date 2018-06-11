@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Home from '@/pages/home'
 const Notes = r => require.ensure([], () => r(require('../pages/notes.vue')), 'notes');
 const Loverecords = r => require.ensure([],()=>r(require('../pages/loverecords.vue')),'loverecords');
+const Hehe = r => require.ensure([],()=>r(require('../pages/hehe.vue')),'hehe');
 Vue.use(Router)
 
 const router=  new Router({
@@ -29,6 +30,11 @@ const router=  new Router({
       meta: '恋爱打卡',
       component : Loverecords,
       path: '/loverecords'
+    },{
+      name : 'hehe',
+      meta: '实验内容区域',
+      component : Hehe,
+      path: '/hehe'
     },{
       path: "*",
       redirect :{
