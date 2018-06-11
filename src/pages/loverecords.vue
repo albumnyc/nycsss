@@ -2,7 +2,7 @@
 <transition>
     <div>
         <transition name="turnpage">
-            <div class="child" v-if="childcomponent" >
+            <div class="child" v-if="childcomponent" id="childParent">
                 <div v-for="(card,cardIndex) in cardsList" :key="cardIndex" class="cardItem">
                     <div class="del">
                         -
@@ -75,13 +75,27 @@ export default {
             }]
         }
     },  
-    mounted(){
-        // console.log(this.$refs)
-        // this.$refs.move.addEventListener('touchdown',(e)=>{
-        //     const startY = e.pageY;
-        //     console.log(startY);
-        //     return false;
-        // },false)
+    updated(){
+        var _this = this;
+        if(!this.__once){
+            if(this.childcomponent){
+            this.__once__ = true;
+            const getDom =(_=> (name)=>document.getElementById(name))();
+            console.log(getDom);
+            var node = getDom('childParent');
+            function move(dom){
+                [...dom.children].forEach(element => {
+                    element.addEventListener('touchstart',(e)=>{
+                    var pageY = e.touches[0].clientY;
+                    // node.removeChild(element)
+                    console.log(element.innerHTML,_this.cardsList);
+                },false)
+                });
+            }
+            move(node);
+                console.log(node);
+            }
+        }
     },
     methods:{
         addnote(){
