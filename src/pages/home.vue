@@ -61,12 +61,16 @@
                     </li>
                 </ul>
         </div>
+        <div v-show="globalIndex==1">
+            <discover />
+        </div>
          <myfooter @callback="onChangeCallback" class="footer"/>
     </div>
 </template>
 <script>
 import {dialog} from '../js/maxin';
 import myfooter from '../components/common/myfooter'
+import discover from '../components/common/discover'
 export default {
     name :'home',
     mixins:[dialog],
@@ -108,6 +112,7 @@ export default {
     },
     components:{
         myfooter,
+        discover
     },
     methods:{
         onChangeCallback(i){
