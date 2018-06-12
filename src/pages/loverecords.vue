@@ -3,7 +3,7 @@
     <div>
         <transition name="turnpage">
             <div class="child" v-if="childcomponent" id="childParent">
-                <div v-for="(card,cardIndex) in cardsList" :key="cardIndex" class="cardItem">
+                <div v-for="(card,cardIndex) in cardsList" :key="cardIndex" class="cardItem" :style="{opacity: card.alpha==0? 0:1}">
                     <div class="del">
                         -
                     </div>
@@ -13,7 +13,7 @@
                         =
                     </div>
                 </div>
-                <div style="width:100%;text-align:center;opacity:0.4">
+                <div style="width:100%;text-align:center;opacity:0.4" id="info">
                         点击右侧logo可拖动
                 </div>
             </div>
@@ -63,14 +63,17 @@ export default {
             cardsList:[{
                 way : '想你一次就打卡',
                 times : 12,
-                pick:false
+                pick:false,
+                alpha:1
             },{
                 way: '每天说晚安',
                 times :10,
                 pick:false,
+                alpha:1                
             },{
                 way: '每天都要么么哒',
                 times :3,
+                alpha:1,                
                 pick:false
             }]
         }
@@ -81,19 +84,77 @@ export default {
             if(this.childcomponent){
             this.__once__ = true;
             const getDom =(_=> (name)=>document.getElementById(name))();
-            console.log(getDom);
             var node = getDom('childParent');
             function move(dom){
-                [...dom.children].forEach(element => {
+                var topArr= [];
+                [...dom.children].slice(0,-1).forEach(element =>{
+                    topArr.push(element.offsetTop+element.offsetHeight);
+                });
+                [...dom.children].slice(0,-1).forEach(element => {
+                    // topArr.push(element.offsetTop);
                     element.addEventListener('touchstart',(e)=>{
+                        e.preventDefault();
+                        console.log('start');
                     var pageY = e.touches[0].clientY;
-                    // node.removeChild(element)
-                    console.log(element.innerHTML,_this.cardsList);
+                   var initIndex = topArr.findIndex((item)=>item>=pageY);
+                   const initObj = _this.cardsList[initIndex];
+                //    console.log(initIndex);
+                   _this.cardsList[initIndex].alpha=0;
+                    var div = document.createElement('div');
+                    div.setAttribute('class','cardItem');
+                    div.innerHTML=element.innerHTML;
+                    var obj={
+                        display:'flex',
+                        alignItems:'center',
+                        borderTop : '2px solid grey',
+                        borderBottom : '2px solid grey',    
+                        position: 'absolute',
+                        left:'0px',
+                        width:'100vw',      
+                        top: `${pageY}px`              
+                    }
+                    Object.entries(obj).forEach((item)=>{
+                       div.style[item[0]] =item[1];
+                    })
+                    dom.insertBefore(div,getDom('info'));
+                    const movehandle= (e)=>{
+                        var i = initIndex;
+                        console.log('move');
+                        div.style.top=e.touches[0].clientY+'px';
+                        if(e.touches[0].clientY>topArr[i]&&JSON.stringify(_this.cardsList[initIndex])==JSON.stringify(initObj)){
+                            var x = _this.cardsList.splice(i,1);
+                            x=x[0];
+                            _this.cardsList.splice(i+1,0,x);
+                            if(i<topArr.length){
+                              i++;
+                            }
+                        }
+                        return false;
+                    }
+                    document.addEventListener('touchmove',movehandle,false)
+                    const endhamdle=(e)=>{
+                        _this.cardsList[initIndex].alpha=1;                        
+                        e.preventDefault();                        
+                        console.log('触发了end');
+                        div.remove();
+                        document.removeEventListener('touchmove',movehandle);
+                        document.removeEventListener('touchend',endhamdle);                 
+                        return false;
+                    };
+                    document.addEventListener('touchend',endhamdle,false);
+                    document.ontouchcancel =(e)=>{
+                        _this.cardsList[initIndex].alpha=1;
+                        e.preventDefault();                        
+                        console.log('触发了cancel')
+                         div.remove();
+                        document.removeEventListener('touchmove',movehandle);
+                        return false;
+                    }
                 },false)
                 });
             }
             move(node);
-                console.log(node);
+                // console.log(node);
             }
         }
     },

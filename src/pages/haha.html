@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .5s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active for below version 2.1.8 */ {
+  opacity: 0;
+}
+    </style>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<input type="text" spellcheck="true">
+<mark>sdsadsa</mark>
+<div id="transition-components-demo">
+<!-- <input type="radio"  v-model="v-a">
+<input type="radio"  v-model="v-b"> -->
+<transition name="component-fade" mode="out-in">
+        <component v-bind:is="view"></component>
+ </transition>
+ <div>
+     dsadsa
+ </div>
+</div>
+    <script>
+        new Vue({
+  el: '#transition-components-demo',
+  data: {
+    view: 'v-a'
+  },
+  components: {
+    'v-a': {
+      template: '<div>Component A</div>'
+    },
+    'v-b': {
+      template: '<div>Component B</div>'
+    }
+  },
+  mounted(){
+    //   setInterval(_=>{
+    //         if(this.view=='v-a'){
+    //             this.view = 'v-b';
+    //         }else{
+    //             this.view= 'v-a';
+    //         }
+    //   },1000)
+  }
+})
+        </script>
+</body>
+</html>
