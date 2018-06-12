@@ -10,7 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 // import App from './App.vue';
 import animate from 'animate.css'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import 'swiper/dist/css/swiper.css'
+// import 'swiper/dist/css/swiper.css'
 Vue.use(VueAwesomeSwiper)
 Vue.use(ElementUI);
 

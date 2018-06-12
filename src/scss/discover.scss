@@ -1,0 +1,67 @@
+@import './base';
+.wrapper {
+    width: 100%;
+    height: calc(100vh - 2.5rem);
+    // background-color: orange;
+    display: flex;
+    flex-direction: column;
+   .swiper {
+      width: 100%;
+      height: pxtorem(150);
+      border-bottom: pxtorem(1) solid   nth($color,5);
+      background-color: #fff;
+    } 
+    ul {
+        flex: 1;
+        &>li {
+            
+            position: relative;
+            float: left;
+            width: 49.9%;
+            height: pxtorem(80);
+            background-color: #fff;
+            border: pxtorem(.1) solid nth($color,5);
+            &:nth-of-type(odd){
+                border-right: none;
+            }
+            &:nth-of-type(n-2){
+                border-top: none;
+            }
+            .li_wrap {
+                position: absolute;
+                width: 70%;
+                height: 50%;
+                left: 15%;
+                top: 25%;
+                display: flex;
+                .li_wrap_left {
+                    width: 30%;
+                    img {
+                        border-radius: 50%;
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .li_wrap_right {
+                    margin-left: 10%;
+                    &>span {
+                        color:  nth($color,3)
+                    }
+                    &>span:nth-of-type(1) {
+                        font-size: pxtorem(16);
+                    }
+                    &>span:nth-of-type(2) {
+                        font-size: pxtorem(10);
+                        line-height: pxtorem(25);
+                        color:  nth($color,4)
+
+                    }
+
+                }
+            }
+        }
+
+    }
+    
+    
+}
